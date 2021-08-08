@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view('/', 'welcome');
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('categories', CategoryController::class);
 });
-Route::post('/home',[CategoryController::class,'index'])->name('index.category');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
