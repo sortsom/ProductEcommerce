@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                       add categorys
+                       add category's
                     </button>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -20,7 +20,7 @@
                                     </button>
                                 </div>
                                     <div class="card-body">
-                                        <form method="POST" action="#">
+                                        <form method="POST" action="{{Route('index.category')}}">
                                             @csrf
 
                                             <div class="form-group row">
@@ -41,7 +41,7 @@
                                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                                 <div class="col-md-6">
-                                                    <input id="email" type="email" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
+                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
 
                                                     @error('name')
                                                     <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
 
                                                 <div class="col-md-6">
-                                                    <input id="text" type="text" class="form-control @error('price') is-invalid @enderror" name="price" required autocomplete="Price">
+                                                    </label><input id="text" type="text" class="form-control @error('price') is-invalid @enderror" name="price" required autocomplete="Price">
 
                                                     @error('price')
                                                     <span class="invalid-feedback" role="alert">
@@ -100,7 +100,7 @@
                                             </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save Add</button>
+                                                <button type="submit" class="btn btn-primary">Save Add</button>
                                             </div>
 
                                         </form>
@@ -123,10 +123,11 @@
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
+                            @foreach($categories as $Category)
                             <tbody>
                             <tr>
-                                <th scope="row">bsr1992</th>
-                                <td>Photo.jpg</td>
+                                <th scope="row">Hoe</th>
+                                <td>heo</td>
                                 <td>Sort som</td>
                                 <td>$34</td>
                                 <td>Hello for Dec20</td>
@@ -138,6 +139,7 @@
                             </tr>
 
                             </tbody>
+                            @endforeach
                         </table>
                     </div>
                 </div>
