@@ -24,10 +24,16 @@
                                     <th scope="row">{{$category->id}}</th>
                                     <td>{{$category->name}}</td>
                                     <td>
-                                        <a  href="{{route('categories.edit',$category->id)}}" class="btn btn-outline-success">Edit</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger">delete</button>
+                                        <a href="{{route('categories.show',$category->id)}}"
+                                           class="btn btn-outline-primary">Show</a>
+                                        <a href="{{route('categories.edit',$category->id)}}"
+                                           class="btn btn-outline-success">Edit</a>
+                                        <form method="POST" action="{{route('categories.destroy',$category->id)}}"
+                                              class="d-inline-flex">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger">delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
