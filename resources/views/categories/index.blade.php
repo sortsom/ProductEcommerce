@@ -25,7 +25,9 @@
                                     <td>{{$category->name}}</td>
                                     <td>
                                         <a  href="{{route('categories.edit',$category->id)}}" class="btn btn-outline-success">Edit</a>
-                                        <button class="btn btn-outline-danger">delete</button>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger">delete</button>
                                     </td>
                                 </tr>
                             @endforeach

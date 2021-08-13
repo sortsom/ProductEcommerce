@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('categories', CategoryController::class);
 });
-
 
 Auth::routes();
 
