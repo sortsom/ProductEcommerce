@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Edit Category</div>
                     <div class="card-body">
-                        <form method="PUT" action="{{route('categories.update',$category->id)}}">
+                        <form method="POST" action="{{route('categories.update',$category->id)}}">
                             @csrf
                             <div class="form-group">
                                 <label for="email">{{ __('Name') }}</label>
@@ -19,7 +19,7 @@
                             </div>
                             <div class="modal-footer">
                                 <a href="{{route('categories.index')}}" class="btn btn-secondary">Back</a>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">Delete</button>
                             </div>
                         </form>
                     </div>
