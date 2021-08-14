@@ -9,6 +9,7 @@
                     <div class="card-body">
                         <form method="POST" action="{{route('categories.update',$category->id)}}">
                             @csrf
+                            @method('PUT')
                             <div class="form-group">
                                 <label for="email">{{ __('Name') }}</label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"

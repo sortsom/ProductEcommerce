@@ -55,7 +55,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        return view('categories.show',['category' => $category]);
+        return view('categories.show', ['category' => $category]);
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('categories.edit',['category' => $category]);
+        return view('categories.edit', ['category' => $category]);
     }
 
     /**
@@ -80,12 +80,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        //
-        $category= Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $category->update([
-         'name' => $request->name,
+            'name' => $request->name,
         ]);
-        return view('categories.update',['category' => $category]);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -96,8 +95,8 @@ class CategoryController extends Controller
      */
     public function destroy(int $id)
     {
-        $category =Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $category->delete();
-        return view('categories.delete',['category' => $category]);
+        return redirect()->route('categories.index');
     }
 }
