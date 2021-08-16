@@ -20,7 +20,7 @@
                             </div>
                             <div class="modal-footer">
                                 <a href="{{route('categories.index')}}" class="btn btn-secondary">Back</a>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">Delete</button>
                             </div>
                         </form>
                     </div>
