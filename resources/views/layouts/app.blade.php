@@ -54,6 +54,9 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
+                                <a class="nav-link" href="{{route('articles.index') }}">Articles</a>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a class="nav-link" href="{{ route('categories.index') }}">All Categories</a>
                             </li>
                             <li class="nav-item dropdown">
