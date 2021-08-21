@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::view('/', 'welcome');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('categories', CategoryController::class);
+    Route::resource('articles',ArticleController::class);
 });
 
 Auth::routes();
