@@ -26,15 +26,15 @@
                                     <td>
 
                                         <a  href="{{route('categories.edit',$category->id)}}" class="btn btn-outline-success">Edit</a>
-                                        <form method="POST" action="{{route('categories.delete',$category->id)}}">
-                                            @csrf
-                                            @method
+{{--                                        <form method="POST" action="{{route('categories.delete',$category->id)}}">--}}
+{{--                                            @csrf--}}
+{{--                                            @method--}}
 
-                                        <a href="{{route('categories.show',$category->id)}}"
-                                           class="btn btn-outline-primary">Show</a>
-                                        <a href="{{route('categories.edit',$category->id)}}"
-                                           class="btn btn-outline-success">Edit</a>
-                                        </form>
+{{--                                        <a href="{{route('categories.show',$category->id)}}"--}}
+{{--                                           class="btn btn-outline-primary">Show</a>--}}
+{{--                                        <a href="{{route('categories.edit',$category->id)}}"--}}
+{{--                                           class="btn btn-outline-success">Edit</a>--}}
+{{--                                        </form>--}}
                                         <form method="POST" action="{{route('categories.destroy',$category->id)}}"
                                               class="d-inline-flex">
                                             @csrf
