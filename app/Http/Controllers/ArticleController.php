@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Category;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -9,21 +14,24 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
         //
+        $articles = Article::all();
+        return view('articles.index',['articles'=>$articles]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|\Illuminate\Http\Response
      */
     public function create()
     {
         //
+        return view('articles.create');
     }
 
     /**
@@ -52,11 +60,13 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
+       $articles =Article::findOrFail($id);
+      return view('articles.edit',['articles'=>$articles]);
     }
 
     /**
@@ -69,6 +79,11 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $articles = Category::findOrFail($id);
+        $articles->update([
+            'name' => $request->name,
+        ]);
+        return redirect()->route('articles.index');
     }
 
     /**

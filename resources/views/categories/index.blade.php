@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <span class="display-5">All Categories</span>
-                        <a href="{{route('categories.create')}}" class="btn btn-primary float-right">New Category</a>
+                        <a href="{{route('categories.create',)}}" class="btn btn-primary float-right">New Category</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
