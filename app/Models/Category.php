@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = ['name'];
 
@@ -16,6 +16,11 @@ class Category extends Model
     {
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = preg_replace('/\s+/u', '-', trim($value));
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 
 }

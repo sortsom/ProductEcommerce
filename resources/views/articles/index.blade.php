@@ -14,33 +14,32 @@
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">user_id</th>
-                                <th scope="col">categories_id</th>
+                                <th scope="col">user</th>
+                                <th scope="col">category</th>
                                 <th scope="col">title</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">timestamps</th>
-                                <th scope="col">SoftDelete</th>
-
+                                <th scope="col">created at</th>
+                                <th scope="col">action</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="10%">TSR00012</th>
-                                    <th scope="10%">1</th>
-                                    <th scope="10%">2</th>
-                                    <th scope="30%">Phones</th>
-                                    <th scope="40%">Lorem ipsum dolor adipisicing elit. Aut autem commodi culpa </th>
-                                    <th scope="30%">12:00PM</th>
-                                    <td>
-                                        <a  href="#" class="btn btn-outline-success">Edit</a>
-                                        <form method="POST" action="" class="d-inline-flex">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger">delete</button>
+                            <tr>
+                                <th scope="10%">TSR00012</th>
+                                <th scope="10%">1</th>
+                                <th scope="10%">2</th>
+                                <th scope="30%">Phones</th>
+                                <th scope="40%">Lorem ipsum dolor adipisicing elit. Aut autem commodi culpa</th>
+                                <th scope="30%">12:00PM</th>
+                                <td>
+                                    <a href="#" class="btn btn-outline-success">Edit</a>
+                                    <form method="POST" action="" class="d-inline-flex">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger">delete</button>
 
-                                        </form>
-                                    </td>
-                                </tr>
+                                    </form>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

@@ -11,4 +11,14 @@ class Article extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['title', 'description', 'user_id', 'category_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Article::class);
+    }
 }
