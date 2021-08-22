@@ -10,7 +10,7 @@ class Article extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'user_id', 'category_id'];
+    protected $fillable = ['title', 'description', 'user_id', 'category_id', 'image'];
 
     public function user()
     {

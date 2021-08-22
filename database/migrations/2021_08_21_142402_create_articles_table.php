@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->foreignId('category_id')->constrained();
             $table->string('title');
             $table->text('description');
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
