@@ -41,7 +41,19 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-
+//        auth()->user()->articles()->create([
+//            'category_id' => $request->category_id,
+//            'title' => $request->title,
+//            'description' => $request->description
+//        ]);
+//
+        Article::create([
+            'user_id' => auth()->user()->id,
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -83,7 +95,9 @@ class ArticleController extends Controller
         //
         $articles = Category::findOrFail($id);
         $articles->update([
-            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'description' => $request->description
         ]);
         return redirect()->route('articles.index');
     }

@@ -5,14 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">Add New Category</div>
+                    <div class="card-header">Add New Article</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('articles.store') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="email">{{ __('Name') }}</label>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                       name="name" value="{{ old('name') }}">
+                                <input id="name" type="text" class="form-control @error('title') is-invalid @enderror"
+                                       name="title" value="{{ old('title') }}">
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror

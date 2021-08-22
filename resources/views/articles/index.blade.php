@@ -23,23 +23,32 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="10%">TSR00012</th>
-                                <th scope="10%">1</th>
-                                <th scope="10%">2</th>
-                                <th scope="30%">Phones</th>
-                                <th scope="40%">Lorem ipsum dolor adipisicing elit. Aut autem commodi culpa</th>
-                                <th scope="30%">12:00PM</th>
-                                <td>
-                                    <a href="#" class="btn btn-outline-success">Edit</a>
-                                    <form method="POST" action="" class="d-inline-flex">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger">delete</button>
 
-                                    </form>
-                                </td>
-                            </tr>
+                            @forelse($articles as $article)
+                                <tr>
+                                    <th scope="10%">{{ ++$loop->index }}</th>
+                                    <th scope="10%">{{ $article->user->name }}</th>
+                                    <th scope="10%">{{ $article->category->name }}</th>
+                                    <th scope="30%">{{ $article->title }}</th>
+                                    <th scope="40%">{{ $article->description }}</th>
+                                    <th scope="30%">{{ $article->created_at->format('d-m-Y') }}</th>
+                                    <td>
+                                        <a href="#" class="btn btn-outline-success">Edit</a>
+                                        <form method="POST" action="" class="d-inline-flex">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger">delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">
+                                        No data to be displayed
+                                    </td>
+                                </tr>
+                            @endforelse
+
                             </tbody>
                         </table>
                     </div>

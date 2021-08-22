@@ -20,7 +20,7 @@ Route::view('/', 'welcome');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('categories', CategoryController::class);
-    Route::resource('articles',ArticleController::class);
+    Route::resource('articles', ArticleController::class);
 });
 
 Auth::routes();
