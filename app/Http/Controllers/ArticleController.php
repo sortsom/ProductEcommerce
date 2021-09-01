@@ -41,12 +41,6 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-//        auth()->user()->articles()->create([
-//            'category_id' => $request->category_id,
-//            'title' => $request->title,
-//            'description' => $request->description
-//        ]);
-//
         Article::create([
             'user_id' => auth()->user()->id,
             'category_id' => $request->category_id,
@@ -76,12 +70,11 @@ class ArticleController extends Controller
     public function edit(int $id)
     {
         $categories = Category::get(['id', 'name']);
-        $articles = Article::findOrFail($id);
+        $article = Article::findOrFail($id);
         return view('articles.edit', [
-            'articles' => $articles,
+            'article' => $article,
             'categories' => $categories
         ]);
-
     }
 
     /**
@@ -93,14 +86,13 @@ class ArticleController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        //
-        $articles = Category::findOrFail($id);
-        $articles->update([
+        $article = Article::findOrFail($id);
+        $article->update([
             'category_id' => $request->category_id,
             'title' => $request->title,
             'description' => $request->description
         ]);
-        return redirect()->route('articles.index')->with("Success",'updated');
+        return redirect()->route('articles.index')->with('success', 'Updated');
     }
 
     /**
@@ -109,11 +101,10 @@ class ArticleController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(int $id): \Illuminate\Http\RedirectResponse
+    public function destroy(int $id)
     {
-   $articles= Article::findOrFail($id);
-     $articles->Delete();
-  return redirect()->route('articles.index');
-
+        $articles = Article::findOrFail($id);
+        $articles->Delete();
+        return redirect()->route('articles.index');
     }
 }

@@ -7,24 +7,31 @@
                 <div class="card">
                     <div class="card-header">Edit Category</div>
                     <div class="card-body">
-                        <form method="POST" action="{{route('articles.update',$articles->id)}}">
+                        <form method="POST" action="{{route('articles.update',$article->id)}}">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="email">{{ __('user') }}</label>
-                                <input id="name" type="text" class="form-control" value="{{ old('user',$articles->user->name ) }}">
+                                <label for="email">{{ __('Name') }}</label>
+                                <input id="name" type="text" class="form-control @error('title') is-invalid @enderror"
+                                       name="title" value="{{ old('title',$article->title) }}">
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <label for="category">{{__('category')}}</label>
-                                <input type="text" id="category" class="form-control" value="{{ old('category',$articles->category->name ) }}">
+                                <label for="category_id">Category</label>
+                                <select name="category_id" class="form-control" id="category_id">
+                                    <option value="">---Select Category---</option>
+                                    @foreach($categories as $category)
+                                        <option
+                                            {{$article->category_id === $category->id ? 'selected' : ''}} value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
-                                <lable for="title">{{__('title')}}</lable>
-                                <input type="text" id="title" class="form-control" value="{{ old('title',$articles->title ) }}">
-                            </div>
-                            <div class="form-group">
-                                <lable for="description">{{__('description')}}</lable>
-                                <input type="text" id="description" class="form-control" value="{{ old('description',$articles->description) }}">
+                                <label for="description">Description</label>
+                                <textarea name="description" class="form-control" id="description"
+                                          rows="5">{{ old('description',$article->description) }}</textarea>
                             </div>
                             <div class="modal-footer">
                                 <a href="{{route('articles.index')}}" class="btn btn-secondary">Back</a>
