@@ -71,9 +71,9 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return Application|Factory|View|\Illuminate\Http\Response
+     * @return Application|Factory|View|\Illuminate\Http\RedirectResponse
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $categories = Category::get(['id', 'name']);
         $articles = Article::findOrFail($id);
@@ -81,6 +81,7 @@ class ArticleController extends Controller
             'articles' => $articles,
             'categories' => $categories
         ]);
+
     }
 
     /**
@@ -88,9 +89,9 @@ class ArticleController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
         $articles = Category::findOrFail($id);
@@ -99,17 +100,20 @@ class ArticleController extends Controller
             'title' => $request->title,
             'description' => $request->description
         ]);
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with("Success",'updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): \Illuminate\Http\RedirectResponse
     {
-        //
+   $articles= Article::findOrFail($id);
+     $articles->Delete();
+  return redirect()->route('articles.index');
+
     }
 }

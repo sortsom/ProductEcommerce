@@ -33,8 +33,8 @@
                                     <th scope="40%">{{ $article->description }}</th>
                                     <th scope="30%">{{ $article->created_at->format('d-m-Y') }}</th>
                                     <td>
-                                        <a href="#" class="btn btn-outline-success">Edit</a>
-                                        <form method="POST" action="" class="d-inline-flex">
+                                        <a href="{{route('articles.edit',$article->id)}}" class="btn btn-outline-success">Edit</a>
+                                        <form method="POST" action="{{route('articles.destroy',$article->id)}}" class="d-inline-flex">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger">delete</button>
