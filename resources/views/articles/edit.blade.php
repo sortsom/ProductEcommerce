@@ -28,10 +28,15 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea name="description" class="form-control" id="description"
                                           rows="5">{{ old('description',$article->description) }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <lable for="image">image</lable>
+                                <input type="file" name="image" class="form-control">
                             </div>
                             <div class="modal-footer">
                                 <a href="{{route('articles.index')}}" class="btn btn-secondary">Back</a>

@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Add New Article</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('articles.store') }}">
+                        <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="email">{{ __('Name') }}</label>
@@ -29,6 +29,10 @@
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea name="description" class="form-control" id="description" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <lable for="image">image</lable>
+                                <input type="file" name="image" class="form-control">
                             </div>
                             <div class="modal-footer">
                                 <a href="{{route('categories.index')}}" class="btn btn-secondary">Back</a>

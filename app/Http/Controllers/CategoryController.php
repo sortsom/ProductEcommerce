@@ -41,8 +41,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'image'=>$request->files,
         ]);
+        $input = $request ->all();
+        if($image = $request->file('image')){
+
+        }
         return redirect()->route('categories.index');
     }
 
