@@ -8,7 +8,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Null_;
 
 class ArticleController extends Controller
 {
@@ -42,11 +41,10 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $imageName=" ";
-        if($request->file('image'))
-         {
-             $imageName=time().'.'.$request->image->extension();
-             $request->image->move(public_path('image'),$imageName);
+        $imageName = " ";
+        if ($request->file('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('image'), $imageName);
 
         }
 
@@ -55,7 +53,7 @@ class ArticleController extends Controller
             'category_id' => $request->category_id,
             'title' => $request->title,
             'description' => $request->description,
-            'image'=>$imageName,
+            'image' => $imageName,
         ]);
         return redirect()->route('articles.index');
     }
@@ -96,12 +94,19 @@ class ArticleController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $article = Article::findOrFail($id);
-        $article->update([
+        $data = [
             'category_id' => $request->category_id,
             'title' => $request->title,
             'description' => $request->description
-        ]);
+        ];
+        if ($request->file('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('image'), $imageName);
+            $data['image'] = $imageName;
+        }
+
+        $article = Article::findOrFail($id);
+        $article->update($data);
         return redirect()->route('articles.index')->with('success', 'Updated');
     }
 
