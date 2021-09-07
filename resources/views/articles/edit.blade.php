@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Edit Category</div>
                     <div class="card-body">
-                        <form method="POST" action="{{route('articles.update',$article->id)}}">
+                        <form method="POST" action="{{route('articles.update',$article->id)}}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
