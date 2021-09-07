@@ -104,7 +104,6 @@ class ArticleController extends Controller
             $request->image->move(public_path('image'), $imageName);
             $data['image'] = $imageName;
         }
-
         $article = Article::findOrFail($id);
         $article->update($data);
         return redirect()->route('articles.index')->with('success', 'Updated');
