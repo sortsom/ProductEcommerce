@@ -10,10 +10,10 @@
                         <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="email">{{ __('Name') }}</label>
-                                <input id="name" type="text" class="form-control @error('title') is-invalid @enderror"
+                                <label for="title">{{ __('title') }}</label>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"
                                        name="title" value="{{ old('title') }}">
-                                @error('name')
+                                @error('title')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -28,7 +28,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea name="description" class="form-control" id="description" rows="5"></textarea>
+                                <textarea name="description" class="form-control @error('title') is-invalid @enderror" id="description" rows="5"></textarea>
+                                @error('description')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <lable for="image">image</lable>

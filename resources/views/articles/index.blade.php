@@ -10,7 +10,7 @@
                             <a href="{{route('articles.create')}}" class="btn btn-primary float-right">New Articles</a>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" >
                                 <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -38,10 +38,10 @@
                                         </th>
                                         <th scope="10%">{{ $article->user->name }}</th>
                                         <th scope="10%">{{ $article->category->name }}</th>
-                                        <th scope="30%">{{ $article->title }}</th>
-                                        <th scope="40%">{{ $article->description }}</th>
+                                        <th scope="30%">{{ \Illuminate\Support\Str::limit($article->title, 10)}}</th>
+                                        <th scope="40%"> {{ \Illuminate\Support\Str::limit($article->description, 50) }}</th>
                                         <th scope="30%">{{ $article->created_at->format('d-m-Y') }}</th>
-                                        <td>
+                                        <td class="d-flex">
                                             <a href="{{route('articles.edit',$article->id)}}" class="btn btn-outline-success">Edit</a>
                                             <form method="POST" action="{{route('articles.destroy',$article->id)}}" class="d-inline-flex">
                                                 @csrf
@@ -60,12 +60,14 @@
 
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-center">
-                                {{$articles->links('pagination::bootstrap-4')}}
-                            </div>
-                        </div>
 
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            {{$articles->links('pagination::bootstrap-4')}}
+                        </div>
                     </div>
+
                 </div>
+
             </div>
     @endsection

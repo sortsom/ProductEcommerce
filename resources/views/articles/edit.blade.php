@@ -11,13 +11,12 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="email">{{ __('Name') }}</label>
+                                <label for="title">{{ __('title') }}</label>
                                 <input id="name" type="text" class="form-control @error('title') is-invalid @enderror"
                                        name="title" value="{{ old('title',$article->title) }}">
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                @error('title')
+                                <span class="text-danger" role="alert">{{ $message }}</span>
                                 @enderror
-                            </div>
                             <div class="form-group">
                                 <label for="category_id">Category</label>
                                 <select name="category_id" class="form-control" id="category_id">
@@ -31,8 +30,11 @@
 
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea name="description" class="form-control" id="description"
+                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description"
                                           rows="5">{{ old('description',$article->description) }}</textarea>
+                                @error('description')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <lable for="image">image</lable>

@@ -18,7 +18,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(10);
+        $articles = Article::paginate(5);
         return view('articles.index', ['articles' => $articles]);
     }
 
@@ -40,13 +40,20 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
+        $validated = $request->validate([
+            'title' => 'required|min:30|max:255',
+            'description' => 'required',
+        ]);
+
         $imageName = " ";
         if ($request->file('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('image'), $imageName);
 
         }
+
 
         Article::create([
             'user_id' => auth()->user()->id,
@@ -94,6 +101,11 @@ class ArticleController extends Controller
      */
     public function update(Request $request, int $id)
     {
+        $validated = $request->validate([
+            'title' => 'required|min:30|max:255',
+            'description' => 'required',
+        ]);
+
         $data = [
             'category_id' => $request->category_id,
             'title' => $request->title,
