@@ -45,6 +45,7 @@ class ArticleController extends Controller
         $validated = $request->validate([
             'title' => 'required|min:30|max:255',
             'description' => 'required',
+            'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $imageName = " ";
@@ -62,7 +63,7 @@ class ArticleController extends Controller
             'description' => $request->description,
             'image' => $imageName,
         ]);
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with("success",'Updated are successful!!');
     }
 
     /**
@@ -104,6 +105,7 @@ class ArticleController extends Controller
         $validated = $request->validate([
             'title' => 'required|min:30|max:255',
             'description' => 'required',
+            'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $data = [
@@ -131,6 +133,6 @@ class ArticleController extends Controller
     {
         $articles = Article::findOrFail($id);
         $articles->Delete();
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with("success",'You are delete successful!! ');
     }
 }

@@ -5,7 +5,17 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="card">
+
                     <div class="card-header">Add New Article</div>
+                    <div class="clearfix"></div>
+                    @if($message = Session::get('success'))
+                        <div class="alert alert-danger m-2 alert-dismissible fade show p-3" role="alert">
+                            {{$message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="card-body">
                         <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
                             @csrf
@@ -35,7 +45,10 @@
                             </div>
                             <div class="form-group">
                                 <lable for="image">image</lable>
-                                <input type="file" name="image" class="form-control">
+                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror ">
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="modal-footer">
                                 <a href="{{route('categories.index')}}" class="btn btn-secondary">Back</a>

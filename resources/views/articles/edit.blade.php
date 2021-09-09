@@ -6,10 +6,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">Edit Category</div>
+
                     <div class="card-body">
                         <form method="POST" action="{{route('articles.update',$article->id)}}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+
+
                             <div class="form-group">
                                 <label for="title">{{ __('title') }}</label>
                                 <input id="name" type="text" class="form-control @error('title') is-invalid @enderror"
@@ -38,7 +41,10 @@
                             </div>
                             <div class="form-group">
                                 <lable for="image">image</lable>
-                                <input type="file" name="image" class="form-control">
+                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="modal-footer">
                                 <a href="{{route('articles.index')}}" class="btn btn-secondary">Back</a>

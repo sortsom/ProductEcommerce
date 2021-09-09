@@ -8,6 +8,15 @@
                         <div class="card-header">
                             <span class="display-5">All Articles</span>
                             <a href="{{route('articles.create')}}" class="btn btn-primary float-right">New Articles</a>
+                            <div class="clearfix"></div>
+                            @if($message = Session::get('success'))
+                            <div class="alert alert-success m-2 alert-dismissible fade show p-3" role="alert">
+                                {{$message}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                                @endif
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered" >
@@ -39,7 +48,7 @@
                                         <th scope="10%">{{ $article->user->name }}</th>
                                         <th scope="10%">{{ $article->category->name }}</th>
                                         <th scope="30%">{{ \Illuminate\Support\Str::limit($article->title, 10)}}</th>
-                                        <th scope="40%"> {{ \Illuminate\Support\Str::limit($article->description, 50) }}</th>
+                                        <th scope="40%"> {{ \Illuminate\Support\Str::limit($article->description, 20) }}</th>
                                         <th scope="30%">{{ $article->created_at->format('d-m-Y') }}</th>
                                         <td class="d-flex">
                                             <a href="{{route('articles.edit',$article->id)}}" class="btn btn-outline-success">Edit</a>

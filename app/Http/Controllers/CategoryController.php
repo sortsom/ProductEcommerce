@@ -89,7 +89,7 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name,
         ]);
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with("success",'Updated successful!!');
     }
 
     /**
@@ -102,6 +102,6 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with("success",'deleted successful!!');
     }
 }
