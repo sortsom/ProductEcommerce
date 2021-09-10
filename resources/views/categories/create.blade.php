@@ -6,6 +6,15 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">Add New Category</div>
+                    <div class="clearfix"></div>
+                    @if($message = Session::get('success'))
+                        <div class="alert alert-danger m-2 alert-dismissible fade show p-3" role="alert">
+                            {{$message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="card-body">
                         <form method="POST" action="{{route('categories.store')}}">
                             @csrf

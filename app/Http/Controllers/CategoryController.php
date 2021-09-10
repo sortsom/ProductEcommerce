@@ -44,8 +44,8 @@ class CategoryController extends Controller
             'name' => $request->name,
             'image'=>$request->files,
         ]);
-        $input = $request ->all();
-        if($image = $request->file('image')){
+        $request ->all();
+        if( $request->file('image')){
 
         }
         return redirect()->route('categories.index');
@@ -102,6 +102,6 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('categories.index')->with("success",'deleted successful!!');
+        return redirect()->route('categories.index')->with("success",'Deleted successful!!');
     }
 }

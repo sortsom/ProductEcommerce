@@ -29,13 +29,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="category_id">Category</label>
-                                <select name="category_id" class="form-control" id="category_id">
+                                <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="category_id">
                                     <option value="">---Select Category---</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            @error('category_id')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea name="description" class="form-control @error('title') is-invalid @enderror" id="description" rows="5"></textarea>

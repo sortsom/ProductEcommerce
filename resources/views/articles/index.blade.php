@@ -45,10 +45,10 @@
                                                     <img style="height: 45px; width: 45px; border-radius: 50%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png">
                                             @endif
                                         </th>
-                                        <th scope="10%">{{ $article->user->name }}</th>
-                                        <th scope="10%">{{ $article->category->name }}</th>
+                                        <th scope="10%">{{$article->user->name ??'unknown'}}</th>
+                                        <th scope="10%">{{$article->category->name ??'unknown'}}</th>
                                         <th scope="30%">{{ \Illuminate\Support\Str::limit($article->title, 10)}}</th>
-                                        <th scope="40%"> {{ \Illuminate\Support\Str::limit($article->description, 20) }}</th>
+                                        <th scope="40%"> {{ \Illuminate\Support\Str::limit($article->description, 50) }}</th>
                                         <th scope="30%">{{ $article->created_at->format('d-m-Y') }}</th>
                                         <td class="d-flex">
                                             <a href="{{route('articles.edit',$article->id)}}" class="btn btn-outline-success">Edit</a>

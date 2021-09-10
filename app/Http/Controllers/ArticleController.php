@@ -42,12 +42,12 @@ class ArticleController extends Controller
     public function store(Request $request)
 
     {
-        $validated = $request->validate([
+        $request->validate([
             'title' => 'required|min:30|max:255',
             'description' => 'required',
             'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id'=>'required|exists:categories,id',
         ]);
-
         $imageName = " ";
         if ($request->file('image')) {
             $imageName = time() . '.' . $request->image->extension();
@@ -102,10 +102,11 @@ class ArticleController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $validated = $request->validate([
+         $request->validate([
             'title' => 'required|min:30|max:255',
             'description' => 'required',
             'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+             'category_id'=>'required|exists:categories,id',
         ]);
 
         $data = [

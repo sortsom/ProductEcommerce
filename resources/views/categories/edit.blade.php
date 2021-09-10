@@ -6,6 +6,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">Edit Category</div>
+
                     <div class="card-body">
                         <form method="POST" action="{{route('categories.update',$category->id)}}">
                             @csrf
