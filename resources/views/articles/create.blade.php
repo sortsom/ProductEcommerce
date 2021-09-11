@@ -35,10 +35,10 @@
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('category_id')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                @enderror
                             </div>
-                            @error('category_id')
-                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                            @enderror
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea name="description" class="form-control @error('title') is-invalid @enderror" id="description" rows="5"></textarea>

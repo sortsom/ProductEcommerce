@@ -45,8 +45,8 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required|min:30|max:255',
             'description' => 'required',
-            'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category_id'=>'required|exists:categories,id',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'required|exists:categories,id',
         ]);
         $imageName = " ";
         if ($request->file('image')) {
@@ -63,7 +63,7 @@ class ArticleController extends Controller
             'description' => $request->description,
             'image' => $imageName,
         ]);
-        return redirect()->route('articles.index')->with("success",'Updated are successful!!');
+        return redirect()->route('articles.index')->with("success", 'Updated are successful!!');
     }
 
     /**
@@ -102,11 +102,11 @@ class ArticleController extends Controller
      */
     public function update(Request $request, int $id)
     {
-         $request->validate([
+        $request->validate([
             'title' => 'required|min:30|max:255',
             'description' => 'required',
-            'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-             'category_id'=>'required|exists:categories,id',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $data = [
@@ -134,6 +134,6 @@ class ArticleController extends Controller
     {
         $articles = Article::findOrFail($id);
         $articles->Delete();
-        return redirect()->route('articles.index')->with("success",'You are delete successful!! ');
+        return redirect()->route('articles.index')->with("success", 'You are delete successful!! ');
     }
 }
