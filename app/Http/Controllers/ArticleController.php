@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -39,23 +39,13 @@ class ArticleController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-
+    public function store(ArticleRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:30|max:255',
-            'description' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category_id' => 'required|exists:categories,id',
-        ]);
         $imageName = " ";
         if ($request->file('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('image'), $imageName);
-
         }
-
-
         Article::create([
             'user_id' => auth()->user()->id,
             'category_id' => $request->category_id,
@@ -100,15 +90,8 @@ class ArticleController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, int $id)
+    public function update(ArticleRequest $request, int $id)
     {
-        $request->validate([
-            'title' => 'required|min:30|max:255',
-            'description' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category_id' => 'required|exists:categories,id',
-        ]);
-
         $data = [
             'category_id' => $request->category_id,
             'title' => $request->title,
